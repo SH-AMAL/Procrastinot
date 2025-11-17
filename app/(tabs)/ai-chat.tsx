@@ -32,7 +32,7 @@ const ICON_URLS = {
   title: require('../../assets/images/procrastinot-title.png'),
 };
 const initialChat: ChatMessage[] = [
-  { role: 'model', text: "Hello! I am your AI assistant. I can help you manage and optimize your daily schedule based on your productivity goals." },
+  { role: 'model', text: "Hello! I am your AI assistant. I can help you manage and optimize your daily schedule based on your productivity goals. I am limited to 200 words." },
 ];
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
