@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Platform, ActivityIndicator, Image, StyleSheet, TextStyle, ViewStyle, ImageStyle } from 'react-native';
 const API_KEY = "AIzaSyC0p7cxIGyG93YRkYFpKQamRUKTtB1OYWI";
@@ -21,11 +20,6 @@ interface ChatMessage {
   text: string;
 }
 const ICON_URLS = {
-  support: require('../../assets/images/support.png'),
-  settings: require('../../assets/images/settings.png'),
-  home: require('../../assets/images/home.png'),
-  calendar: require('../../assets/images/calendar.png'),
-  chat: require('../../assets/images/chat.png'),
   star: require('../../assets/images/star.png'),
   aiSuggestions: require('../../assets/images/robot-guy.png'),
   edit: require('../../assets/images/edit.png'),
@@ -79,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.mainCardBg,
     overflow: 'hidden', 
     marginHorizontal: 0,
-    marginBottom: 10,
+    marginBottom: 0,
     borderWidth: 1,
     borderColor: '#E0E0E0',
   } as ViewStyle,
@@ -214,15 +208,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold', 
     fontSize: 14,
   } as TextStyle,
-  footerNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
-    backgroundColor: COLORS.darkIndigo,
-  } as ViewStyle,
-  footerIconWrapper: {
-    padding: 5,
-  } as ViewStyle,
 });
 const fetchGeminiResponse = async (history: ChatMessage[], currentPrompt: string): Promise<string> => {
   const contents = history.map(msg => ({
@@ -283,25 +268,6 @@ export default function AIChatScreen() {
       );
     });
   };
-  const renderFooterNav = () => (
-    <View style={styles.footerNav}>
-      <View style={styles.footerIconWrapper}>
-        <Image source={ICON_URLS.support} style={styles.iconLarge} />
-      </View>
-      <View style={styles.footerIconWrapper}>
-        <Image source={ICON_URLS.settings} style={styles.iconLarge} />
-      </View>
-      <View style={styles.footerIconWrapper}>
-        <Image source={ICON_URLS.home} style={styles.iconLarge} />
-      </View>
-      <View style={styles.footerIconWrapper}>
-        <Image source={ICON_URLS.calendar} style={styles.iconLarge} />
-      </View>
-      <View style={styles.footerIconWrapper}>
-        <Image source={ICON_URLS.chat} style={styles.iconLarge} />
-      </View>
-    </View>
-  );
   return (
     <View style={styles.appContainer}>
       <View style={styles.header}>
@@ -328,13 +294,13 @@ export default function AIChatScreen() {
             contentContainerStyle={styles.chatContainer}
             keyboardShouldPersistTaps="handled"
             >
-                {renderMessages()}
-                {isLoading && (
-                    <View style={{ alignSelf: 'flex-start', marginVertical: 10 }}>
-                        <ActivityIndicator size="small" color={COLORS.darkPurple} />
-                    </View>
-                )}
-                <View style={{ height: 10 }} /> 
+              {renderMessages()}
+              {isLoading && (
+                  <View style={{ alignSelf: 'flex-start', marginVertical: 10 }}>
+                      <ActivityIndicator size="small" color={COLORS.darkPurple} />
+                  </View>
+              )}
+              <View style={{ height: 10 }} /> 
             </ScrollView>
         </View>
         <View style={styles.bottomArea}>
@@ -367,7 +333,6 @@ export default function AIChatScreen() {
           </View>
         </View>
       </View>
-      {renderFooterNav()}
     </View>
   );
 }
